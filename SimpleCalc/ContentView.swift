@@ -12,7 +12,6 @@ struct ContentView: View {
     @ObservedObject var model = CalclationModel()
     var computation = NSDecimalNumber.zero
     var stack: String?
-    var calculation: CalclationModel.OperatorType = .none
 
     private let margin = 4.0
     private let buttonHeight = 32.0

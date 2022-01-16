@@ -13,6 +13,7 @@ class CalclationModel: ObservableObject {
     var editNumber: NumberToEdit = .init()
     var computation = NSDecimalNumber.zero
     var mode = CalculatorMode.input
+    let scale = 9
 
     enum CalculatorMode {
         case input
@@ -20,7 +21,6 @@ class CalclationModel: ObservableObject {
     }
 
     enum OperatorType {
-        case none
         case addition
         case subtraction
         case multiplication
@@ -29,8 +29,6 @@ class CalclationModel: ObservableObject {
 
         var text: String {
             switch self {
-                case .none:
-                    return ""
                 case .addition:
                     return "+"
                 case .subtraction:
@@ -56,10 +54,15 @@ class CalclationModel: ObservableObject {
 
     func pushOperateButton(_ operate: OperatorType) {
         if case .calculate = mode {
-            // TODO =を押した時だけ現在の計算モードと置値で計算する
             // 計算モード中の演算は演算の変更のみ
-            operation = operate
-            return
+            switch operate {
+                case .addition, .subtraction, .multiplication, .divide:
+                    operation = operate
+                    return
+
+                case .equals:
+                    break
+            }
         }
         mode = .calculate
         let number = editNumber.decimal
@@ -84,19 +87,15 @@ class CalclationModel: ObservableObject {
 
             case .equals:
                 break
-
-            case .none:
-                return
         }
-        if case .none = operation {
-            // 計算モードが何もないときには何もしない
-            return
-        } else if case .equals = operation {
+        if case .equals = operation {
             //　＝の時は計算モードを変更しないで計算のみ行う
+
         } else {
             operation = operate
         }
-        displayNumber = computation.stringValue
+        print("debug: = \(computation.stringValue)")
+        displayNumber = createRoundedNumber(decimalNumber: computation)
     }
 
     func toggleNegative() {
@@ -116,8 +115,20 @@ class CalclationModel: ObservableObject {
 
     func allClear() {
         clear()
-        computation.multiplying(by: NSDecimalNumber.zero)
+        computation = NSDecimalNumber.zero
+        operation = .addition
         displayNumber = editNumber.numeric
+    }
+
+    private func createRoundedNumber(decimalNumber: NSDecimalNumber) -> String {
+//        let roundingStyle = NSDecimalNumberHandler(roundingMode: .plain,
+//                                               scale: Int16(scale),
+//                                               raiseOnExactness: false,
+//                                               raiseOnOverflow: false,
+//                                               raiseOnUnderflow: false,
+//                                               raiseOnDivideByZero: false)
+//        [decimalValue decimalNumberByRoundingAccordingToBehavior:roundingStyle];
+        return decimalNumber.stringValue
     }
 }
 
@@ -179,7 +190,7 @@ class NumberToEdit {
         return number
     }
 
-    var hasPoint: Bool {
+    private var hasPoint: Bool {
         return value.contains(point)
     }
 }
