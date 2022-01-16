@@ -13,7 +13,7 @@ class CalclationModel: ObservableObject {
     var editNumber: NumberToEdit = .init()
     var computation = NSDecimalNumber.zero
     var mode = CalculatorMode.input
-    let roundedScale = 9
+    let roundedScale = 12
 
     enum CalculatorMode {
         case input
@@ -48,8 +48,10 @@ class CalclationModel: ObservableObject {
             editNumber.clear()
             mode = .input
         }
-        editNumber.appendNumber(number)
-        displayNumber = editNumber.numeric
+        if editNumber.length < roundedScale {
+            editNumber.appendNumber(number)
+            displayNumber = editNumber.numeric
+        }
     }
 
     func pushOperateButton(_ operate: OperatorType) {
@@ -164,6 +166,11 @@ class NumberToEdit {
 
     var decimal: NSDecimalNumber {
         return NSDecimalNumber(string: numeric)
+    }
+
+    var length: Int {
+        let validateNumber = value.components(separatedBy: .decimalDigits.inverted).joined()
+        return value.count
     }
 
     func clear() {
