@@ -38,6 +38,20 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(computation, NSDecimalNumber.zero)
     }
 
+    func testPushNumberLimitButton() throws {
+        let testButtons = ["1","2","3","3","4","5","6","7","8","9","0","1","2","3","4"]
+        var testResult = ""
+        for number in testButtons {
+            pressButton(button: number)
+            if testResult.count < 12 {
+                testResult += number
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult)
+        }
+        model.allClear()
+    }
+
     func testPushMultiNumber() throws {
         let testButtons = ["12345","12345.6789","-12345","-12345.6789"]
         let testResult = ["12345","12345.6789","-12345","-12345.6789"]
@@ -66,7 +80,7 @@ class SimpleCalcTests: XCTestCase {
     }
 
     func testZeroStartDecimalPushNumberButton() throws {
-        let testButtons = ["0",".","1","2","3","3","4","5","6","7","8","9","0"]
+        let testButtons = ["0",".","1","2","3","4","5","6","7","8","9","0"]
         var testResult = ""
         for number in testButtons {
             pressButton(button: number)
@@ -201,7 +215,7 @@ class SimpleCalcTests: XCTestCase {
     func testDivideIrrationalNumber() {
         let testButtons = [["1","/","3","="],
                            ["1","/","3","*","3","="]]
-        let testResult = ["0.333333333", "1"]
+        let testResult = ["0.333333333333", "1"]
         for (index, buttons) in testButtons.enumerated() {
             var calc = ""
             for operate in buttons {
