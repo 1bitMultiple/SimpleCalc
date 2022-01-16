@@ -11,7 +11,21 @@
 		39841DA9278BFE9400E5B749 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39841DA8278BFE9400E5B749 /* ContentView.swift */; };
 		39841DAB278BFE9700E5B749 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39841DAA278BFE9700E5B749 /* Assets.xcassets */; };
 		39841DAE278BFE9700E5B749 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39841DAD278BFE9700E5B749 /* Preview Assets.xcassets */; };
+		39C0B6A7279184FC00060D7F /* SimpleCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C0B6A6279184FC00060D7F /* SimpleCalcTests.swift */; };
+		39D8A6EC278C002100BECBC0 /* TenKeyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D8A6EB278C002100BECBC0 /* TenKeyModel.swift */; };
+		39D8A6EE278C01A700BECBC0 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D8A6ED278C01A700BECBC0 /* Display.swift */; };
+		39D8A6F0278D854C00BECBC0 /* CalculationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D8A6EF278D854B00BECBC0 /* CalculationModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		39C0B6A8279184FC00060D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39841D9B278BFE9400E5B749 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 39841DA2278BFE9400E5B749;
+			remoteInfo = SimpleCalc;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		39841DA3278BFE9400E5B749 /* SimpleCalc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCalc.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,10 +33,22 @@
 		39841DA8278BFE9400E5B749 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		39841DAA278BFE9700E5B749 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39841DAD278BFE9700E5B749 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		39C0B6A4279184FC00060D7F /* SimpleCalcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleCalcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		39C0B6A6279184FC00060D7F /* SimpleCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCalcTests.swift; sourceTree = "<group>"; };
+		39D8A6EB278C002100BECBC0 /* TenKeyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenKeyModel.swift; sourceTree = "<group>"; };
+		39D8A6ED278C01A700BECBC0 /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
+		39D8A6EF278D854B00BECBC0 /* CalculationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		39841DA0278BFE9400E5B749 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39C0B6A1279184FC00060D7F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				39841DA5278BFE9400E5B749 /* SimpleCalc */,
+				39C0B6A5279184FC00060D7F /* SimpleCalcTests */,
 				39841DA4278BFE9400E5B749 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				39841DA3278BFE9400E5B749 /* SimpleCalc.app */,
+				39C0B6A4279184FC00060D7F /* SimpleCalcTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,8 +79,11 @@
 		39841DA5278BFE9400E5B749 /* SimpleCalc */ = {
 			isa = PBXGroup;
 			children = (
+				39D8A6EF278D854B00BECBC0 /* CalculationModel.swift */,
 				39841DA6278BFE9400E5B749 /* SimpleCalcApp.swift */,
 				39841DA8278BFE9400E5B749 /* ContentView.swift */,
+				39D8A6EB278C002100BECBC0 /* TenKeyModel.swift */,
+				39D8A6ED278C01A700BECBC0 /* Display.swift */,
 				39841DAA278BFE9700E5B749 /* Assets.xcassets */,
 				39841DAC278BFE9700E5B749 /* Preview Content */,
 			);
@@ -65,6 +96,14 @@
 				39841DAD278BFE9700E5B749 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		39C0B6A5279184FC00060D7F /* SimpleCalcTests */ = {
+			isa = PBXGroup;
+			children = (
+				39C0B6A6279184FC00060D7F /* SimpleCalcTests.swift */,
+			);
+			path = SimpleCalcTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +126,24 @@
 			productReference = 39841DA3278BFE9400E5B749 /* SimpleCalc.app */;
 			productType = "com.apple.product-type.application";
 		};
+		39C0B6A3279184FC00060D7F /* SimpleCalcTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39C0B6AC279184FD00060D7F /* Build configuration list for PBXNativeTarget "SimpleCalcTests" */;
+			buildPhases = (
+				39C0B6A0279184FC00060D7F /* Sources */,
+				39C0B6A1279184FC00060D7F /* Frameworks */,
+				39C0B6A2279184FC00060D7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				39C0B6A9279184FC00060D7F /* PBXTargetDependency */,
+			);
+			name = SimpleCalcTests;
+			productName = SimpleCalcTests;
+			productReference = 39C0B6A4279184FC00060D7F /* SimpleCalcTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -94,11 +151,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					39841DA2278BFE9400E5B749 = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					39C0B6A3279184FC00060D7F = {
+						CreatedOnToolsVersion = 13.2;
+						TestTargetID = 39841DA2278BFE9400E5B749;
 					};
 				};
 			};
@@ -116,6 +177,7 @@
 			projectRoot = "";
 			targets = (
 				39841DA2278BFE9400E5B749 /* SimpleCalc */,
+				39C0B6A3279184FC00060D7F /* SimpleCalcTests */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +192,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		39C0B6A2279184FC00060D7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -137,12 +206,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39D8A6F0278D854C00BECBC0 /* CalculationModel.swift in Sources */,
 				39841DA9278BFE9400E5B749 /* ContentView.swift in Sources */,
 				39841DA7278BFE9400E5B749 /* SimpleCalcApp.swift in Sources */,
+				39D8A6EE278C01A700BECBC0 /* Display.swift in Sources */,
+				39D8A6EC278C002100BECBC0 /* TenKeyModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		39C0B6A0279184FC00060D7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39C0B6A7279184FC00060D7F /* SimpleCalcTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		39C0B6A9279184FC00060D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 39841DA2278BFE9400E5B749 /* SimpleCalc */;
+			targetProxy = 39C0B6A8279184FC00060D7F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		39841DAF278BFE9700E5B749 /* Debug */ = {
@@ -269,11 +357,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleCalc/Preview Content\"";
+				DEVELOPMENT_TEAM = AMLQELZV2Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -285,7 +375,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -297,11 +387,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SimpleCalc/Preview Content\"";
+				DEVELOPMENT_TEAM = AMLQELZV2Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -313,7 +405,43 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		39C0B6AA279184FD00060D7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ne.jp.vaio.v005.multiple.SimpleCalcTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleCalc.app/SimpleCalc";
+			};
+			name = Debug;
+		};
+		39C0B6AB279184FD00060D7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ne.jp.vaio.v005.multiple.SimpleCalcTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleCalc.app/SimpleCalc";
 			};
 			name = Release;
 		};
@@ -334,6 +462,15 @@
 			buildConfigurations = (
 				39841DB2278BFE9700E5B749 /* Debug */,
 				39841DB3278BFE9700E5B749 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39C0B6AC279184FD00060D7F /* Build configuration list for PBXNativeTarget "SimpleCalcTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39C0B6AA279184FD00060D7F /* Debug */,
+				39C0B6AB279184FD00060D7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
