@@ -12,6 +12,12 @@ class CalclationModel: ObservableObject {
     var operation: OperatorType = .addition
     var editNumber: NumberToEdit = .init()
     var computation = NSDecimalNumber.zero
+    var mode = CalculatorMode.input
+
+    enum CalculatorMode {
+        case input
+        case calculate
+    }
 
     enum OperatorType {
         case none
@@ -39,30 +45,42 @@ class CalclationModel: ObservableObject {
         }
     }
 
-    func appendNumber(_ number: String) {
-        // TODO: 入力モードが計算モードなら数値入力モードに変更して置値をクリアしておく
-
+    func pushNumberButton(_ number: String) {
+        if case .calculate = mode {
+            editNumber.clear()
+            mode = .input
+        }
         editNumber.appendNumber(number)
         displayNumber = editNumber.numeric
     }
 
-    func calcurate(_ operate: OperatorType) {
-        // TODO: 入力モードが計算モードなら演算タイプを変えるだけにする
-
+    func pushOperateButton(_ operate: OperatorType) {
+        if case .calculate = mode {
+            // TODO =を押した時だけ現在の計算モードと置値で計算する
+            // 計算モード中の演算は演算の変更のみ
+            operation = operate
+            return
+        }
+        mode = .calculate
         let number = editNumber.decimal
+        print("debug: \(computation) \(operation.text) \(number)")
         switch operation {
             case .addition:
-                computation.adding(number)
+                computation =  computation.adding(number)
 
             case .subtraction:
-                computation.subtracting(number)
+                computation = computation.subtracting(number)
 
             case .multiplication:
-                computation.multiplying(by: number)
+                computation = computation.multiplying(by: number)
 
             case .divide:
                 // 0の時は例外エラー
-                computation.dividing(by: number)
+                if number.compare(NSDecimalNumber.zero) == .orderedSame {
+                    displayNumber = "error"
+                    return
+                }
+                computation = computation.dividing(by: number)
 
             case .equals:
                 break

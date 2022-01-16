@@ -56,7 +56,7 @@ struct ContentView: View {
     func didTapButton(_ keyType: TenKey.TenKeyType) {
         switch keyType {
             case .numeral(let number):
-                model.appendNumber(number)
+                model.pushNumberButton(number)
 
             case .decimalPoint:
                 model.addPoint()
@@ -65,7 +65,7 @@ struct ContentView: View {
                 model.toggleNegative()
 
             case .operation(let operationType):
-                model.calcurate(operationType)
+                model.pushOperateButton(operationType)
 
             case .clear:
                 model.clear()
