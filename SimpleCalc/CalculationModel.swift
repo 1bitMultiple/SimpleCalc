@@ -88,9 +88,8 @@ class CalclationModel: ObservableObject {
             case .equals:
                 break
         }
-        if case .equals = operation {
+        if case .equals = operate {
             //　＝の時は計算モードを変更しないで計算のみ行う
-
         } else {
             operation = operate
         }

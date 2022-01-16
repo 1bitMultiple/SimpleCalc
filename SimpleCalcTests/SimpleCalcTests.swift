@@ -213,8 +213,32 @@ class SimpleCalcTests: XCTestCase {
             model.allClear()
         }
         model.allClear()
-
     }
+
+    func testOperation() {
+        let testButtons = [["1","+","2","=","=","=","="],
+                           ["-","3","+","2","=","=","=","="],
+                           ["10","+","2","+","-","10","="],
+                           ["1","+","2","*","3","="],
+                           ["1","+","2","/","3","="],
+                           ["1","+","2","*","3","c","4","="],
+                           ["1","+","2","*","3","a","4","+","5","="],
+        ]
+        let testResult = ["9","5","2","9","1","12","9"]
+        for (index, buttons) in testButtons.enumerated() {
+            var calc = ""
+            for operate in buttons {
+                calc += operate
+                pressButton(button: operate)
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+        model.allClear()
+    }
+
+
 
     func pressButton(button: String) {
         if button == "±" {
