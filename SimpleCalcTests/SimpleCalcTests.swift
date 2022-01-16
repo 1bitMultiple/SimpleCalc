@@ -178,10 +178,12 @@ class SimpleCalcTests: XCTestCase {
     func testDivideRationalNumber() {
         let testButtons = [["4","/","2","="], ["9","/","-3","="], ["-6","/","3","="], ["-12","/","-4","="],
                            ["1","/",".2","="],["1.2","/","2.4","="],
-                           ["1.5","/","3","±","="], ["1.2","±","/","3","="]]
+                           ["1.5","/","3","±","="], ["1.2","±","/","3","="],
+                           ["1.5","/","0","="]]
         let testResult = ["2","-3","-2","3",
                           "5","0.5",
-                          "-0.5", "-0.4"]
+                          "-0.5", "-0.4",
+                          "error"]
         for (index, buttons) in testButtons.enumerated() {
             var calc = ""
             for operate in buttons {
