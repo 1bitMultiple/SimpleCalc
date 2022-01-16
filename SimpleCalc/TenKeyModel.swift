@@ -16,37 +16,11 @@ struct TenKey {
         self.key = tenKeyType
     }
 
-    enum CalculationOperatorType {
-        case none
-        case addition
-        case subtraction
-        case multiplication
-        case divide
-        case equals
-
-        var text: String {
-            switch self {
-                case .none:
-                    return ""
-                case .addition:
-                    return "+"
-                case .subtraction:
-                    return "-"
-                case .multiplication:
-                    return "×"
-                case .divide:
-                    return "÷"
-                case .equals:
-                    return "="
-            }
-        }
-    }
-
     enum TenKeyType {
         case numeral(String)
         case decimalPoint
         case inversionＳign
-        case operation(CalculationOperatorType)
+        case operation(CalclationModel.OperatorType)
         case clear
         case allClear
 
@@ -57,7 +31,7 @@ struct TenKey {
                 case .decimalPoint:
                     return "."
                 case .inversionＳign:
-                    return "+/-"
+                    return "±"
                 case .operation(let operation):
                     return operation.text
                 case .clear:
@@ -91,5 +65,3 @@ struct TenKey {
         }
     }
 }
-
-

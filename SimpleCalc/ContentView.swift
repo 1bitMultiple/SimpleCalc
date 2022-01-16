@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
+    @ObservedObject var model = CalclationModel()
+    var computation = NSDecimalNumber.zero
+    var stack: String?
+    var calculation: CalclationModel.OperatorType = .none
+
     private let margin = 4.0
     private let buttonHeight = 32.0
     private let buttons:[[TenKey]] = [[.init(.allClear), .init( .clear), .init(.inversionＳign),.init(.operation(.multiplication))],
@@ -16,11 +22,10 @@ struct ContentView: View {
                                       [.init(.numeral("1")),.init(.numeral("2")),.init(.numeral("3")),.init(.operation(.subtraction))],
                                       [.init(.numeral("0")),.init(.numeral("00")),.init(.decimalPoint),.init(.operation(.equals))]]
 
-
     var body: some View {
         GeometryReader { bodyView in
             VStack(){
-                Text("0")
+                Text(model.displayNumber)
                     .font(.title)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .background(.secondary)
@@ -30,15 +35,14 @@ struct ContentView: View {
                     HStack {
                         ForEach( buttons[index], id: \.identifier) { button in
                             Button(action: {
-                                // TODO:　ボタンによる動作を実装
-
+                                didTapButton(button.key)
                             }) {
                                 Text(button.key.text).foregroundColor( button.key.color)
                                     .font(.title)
                                     .frame(width:  bodyView.size.width / 5, height: buttonHeight)
                                     .padding(.all, margin)
                                     .overlay(RoundedRectangle(cornerRadius: margin)
-                                                .stroke(Color.gray, lineWidth: 2))
+                                                .stroke(Color.gray, lineWidth: 1))
                                     .foregroundColor(.black)
                                     .background(button.key.bgColor)
                             }
@@ -46,6 +50,28 @@ struct ContentView: View {
                     }
                 }
             }
+        }
+    }
+
+    func didTapButton(_ keyType: TenKey.TenKeyType) {
+        switch keyType {
+            case .numeral(let number):
+                model.appendNumber(number)
+
+            case .decimalPoint:
+                model.addPoint()
+                
+            case .inversionＳign:
+                model.toggleNegative()
+
+            case .operation(let operationType):
+                model.calcurate(operationType)
+
+            case .clear:
+                model.clear()
+
+            case .allClear:
+                model.allClear()
         }
     }
 }
