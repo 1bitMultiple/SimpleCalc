@@ -199,12 +199,8 @@ class SimpleCalcTests: XCTestCase {
     }
 
     func testDivideIrrationalNumber() {
-        let testButtons = [["4","*","2","="], ["2","*","-3","="], ["-5","*","2","="], ["-3","*","-2","="],
-                           ["1","*",".3","="],["1.2","*","2.8","="],
-                           ["1.5","*","3","±","="], ["1.2","±","*","9","="]]
-        let testResult = ["8","-6","-10","6",
-                          "0.3","3.36",
-                          "-4.5", "-10.8"]
+        let testButtons = [["1","/","3","="]]
+        let testResult = ["0.333333333"]
         for (index, buttons) in testButtons.enumerated() {
             var calc = ""
             for operate in buttons {

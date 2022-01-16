@@ -13,7 +13,7 @@ class CalclationModel: ObservableObject {
     var editNumber: NumberToEdit = .init()
     var computation = NSDecimalNumber.zero
     var mode = CalculatorMode.input
-    let scale = 9
+    let roundedScale = 9
 
     enum CalculatorMode {
         case input
@@ -94,7 +94,6 @@ class CalclationModel: ObservableObject {
         } else {
             operation = operate
         }
-        print("debug: = \(computation.stringValue)")
         displayNumber = createRoundedNumber(decimalNumber: computation)
     }
 
@@ -121,14 +120,24 @@ class CalclationModel: ObservableObject {
     }
 
     private func createRoundedNumber(decimalNumber: NSDecimalNumber) -> String {
-//        let roundingStyle = NSDecimalNumberHandler(roundingMode: .plain,
-//                                               scale: Int16(scale),
-//                                               raiseOnExactness: false,
-//                                               raiseOnOverflow: false,
-//                                               raiseOnUnderflow: false,
-//                                               raiseOnDivideByZero: false)
-//        [decimalValue decimalNumberByRoundingAccordingToBehavior:roundingStyle];
-        return decimalNumber.stringValue
+        return decimalNumber.rounding(accordingToBehavior: self).stringValue
+    }
+}
+
+extension CalclationModel: NSDecimalNumberBehaviors {
+    func roundingMode() -> NSDecimalNumber.RoundingMode {
+        return .plain
+    }
+
+    func scale() -> Int16 {
+        return Int16(roundedScale)
+    }
+
+    func exceptionDuringOperation(_ operation: Selector,
+                                  error: NSDecimalNumber.CalculationError,
+                                  leftOperand: NSDecimalNumber,
+                                  rightOperand: NSDecimalNumber?) -> NSDecimalNumber? {
+        return NSDecimalNumber.zero
     }
 }
 
