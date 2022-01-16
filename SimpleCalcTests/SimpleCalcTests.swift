@@ -38,6 +38,17 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(computation, NSDecimalNumber.zero)
     }
 
+    func testPushMultiNumber() throws {
+        let testButtons = ["12345","12345.6789","-12345","-12345.6789"]
+        let testResult = ["12345","12345.6789","-12345","-12345.6789"]
+        for (index,number) in testButtons.enumerated() {
+            pressButton(button: number)
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+    }
+
     func testZeroStartPushNumberButton() throws {
         let testButtons = ["0","0","1","2","3","3","4","5","6","7","8","9","0"]
         var testResult = ""
@@ -45,7 +56,6 @@ class SimpleCalcTests: XCTestCase {
             pressButton(button: number)
             testResult = NSDecimalNumber(string: testResult + number).stringValue
             let result = model.displayNumber
-            print("debug: \(result) : \(testResult)")
             XCTAssertEqual(result, testResult)
         }
         model.allClear()
@@ -62,7 +72,6 @@ class SimpleCalcTests: XCTestCase {
             pressButton(button: number)
             testResult = testResult + number
             let result = model.displayNumber
-            print("debug: \(result) : \(testResult)")
             XCTAssertEqual(result, testResult)
         }
         model.allClear()
@@ -80,7 +89,6 @@ class SimpleCalcTests: XCTestCase {
             pressButton(button: number)
             let result = model.displayNumber
             testResult += number
-            print("debug: \(result) : \(testResult)")
             XCTAssertEqual(result, testResult)
         }
         model.allClear()
@@ -102,10 +110,110 @@ class SimpleCalcTests: XCTestCase {
         for (index,number) in testButtons.enumerated() {
             pressButton(button: number)
             let result = model.displayNumber
-            print("debug: \(result) = \(testResult[index])")
             XCTAssertEqual(result, testResult[index])
         }
         model.allClear()
+    }
+
+    func testAddition() throws {
+        let testButtons = [["1","+","2","="], ["-1","+","2","="], ["-5","+","2","="], ["-3","+","-2","="],
+                           ["1","+",".3","="],["1.2","+","2.8","="],
+                           ["1.5","+","3","±","="], ["1.2","±","+","9","="]]
+        let testResult = ["3","1","-3","-5",
+                          "1.3","4"
+                          ,"-1.5", "7.8"]
+        for (index, buttons) in testButtons.enumerated() {
+            var calc = ""
+            for operate in buttons {
+                calc += operate
+                pressButton(button: operate)
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+        model.allClear()
+    }
+
+    func testSubtraction() throws {
+        let testButtons = [["4","-","2","="], ["2","-","2","="], ["-5","-","2","="], ["-3","-","-2","="],
+                           ["1","-",".3","="],["1.2","-","2.8","="],
+                           ["1.5","-","3","±","="], ["1.2","±","-","9","="]]
+        let testResult = ["2","0","-7","-1",
+                          "0.7","-1.6",
+                          "4.5", "-10.2"]
+        for (index, buttons) in testButtons.enumerated() {
+            var calc = ""
+            for operate in buttons {
+                calc += operate
+                pressButton(button: operate)
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+        model.allClear()
+    }
+
+    func testMultiplication() throws {
+        let testButtons = [["4","*","2","="], ["2","*","-3","="], ["-5","*","2","="], ["-3","*","-2","="],
+                           ["1","*",".3","="],["1.2","*","2.8","="],
+                           ["1.5","*","3","±","="], ["1.2","±","*","9","="]]
+        let testResult = ["8","-6","-10","6",
+                          "0.3","3.36",
+                          "-4.5", "-10.8"]
+        for (index, buttons) in testButtons.enumerated() {
+            var calc = ""
+            for operate in buttons {
+                calc += operate
+                pressButton(button: operate)
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+        model.allClear()
+    }
+
+    func testDivideRationalNumber() {
+        let testButtons = [["4","/","2","="], ["9","/","-3","="], ["-6","/","3","="], ["-12","/","-4","="],
+                           ["1","/",".2","="],["1.2","/","2.4","="],
+                           ["1.5","/","3","±","="], ["1.2","±","/","3","="],
+                           ["1.5","/","0","="]]
+        let testResult = ["2","-3","-2","3",
+                          "5","0.5",
+                          "-0.5", "-0.4",
+                          "error"]
+        for (index, buttons) in testButtons.enumerated() {
+            var calc = ""
+            for operate in buttons {
+                calc += operate
+                pressButton(button: operate)
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+        model.allClear()
+
+    }
+
+    func testDivideIrrationalNumber() {
+        let testButtons = [["1","/","3","="],
+                           ["1","/","3","*","3","="]]
+        let testResult = ["0.333333333", "1"]
+        for (index, buttons) in testButtons.enumerated() {
+            var calc = ""
+            for operate in buttons {
+                calc += operate
+                pressButton(button: operate)
+            }
+            let result = model.displayNumber
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+        model.allClear()
+
     }
 
     func pressButton(button: String) {
@@ -118,17 +226,17 @@ class SimpleCalcTests: XCTestCase {
         } else if button == "a" {
             model.allClear()
         } else if button == "+" {
-            model.calcurate(.addition)
+            model.pushOperateButton(.addition)
         } else if button == "-" {
-            model.calcurate(.subtraction)
+            model.pushOperateButton(.subtraction)
         } else if button == "*" {
-            model.calcurate(.multiplication)
+            model.pushOperateButton(.multiplication)
         } else if button == "/" {
-            model.calcurate(.divide)
+            model.pushOperateButton(.divide)
         } else if button == "=" {
-            model.calcurate(.equals)
+            model.pushOperateButton(.equals)
         } else {
-            model.appendNumber(button)
+            model.pushNumberButton(button)
         }
     }
 
