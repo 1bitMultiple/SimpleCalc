@@ -98,12 +98,20 @@ class CalclationModel: ObservableObject {
         displayNumber = createRoundedNumber(decimalNumber: computation)
     }
 
-    func toggleNegative() {
+    func pushSignInversionButton() {
+        if case .calculate = mode {
+            editNumber.clear()
+            mode = .input
+        }
         editNumber.isNegative.toggle()
         displayNumber = editNumber.numeric
     }
 
-    func addPoint() {
+    func pushPointButton() {
+        if case .calculate = mode {
+            editNumber.clear()
+            mode = .input
+        }
         editNumber.appendPoint()
         displayNumber = editNumber.numeric
     }
