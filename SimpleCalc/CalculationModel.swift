@@ -68,7 +68,6 @@ class CalclationModel: ObservableObject {
         }
         mode = .calculate
         let number = editNumber.decimal
-        print("debug: \(computation) \(operation.text) \(number)")
         switch operation {
             case .addition:
                 computation =  computation.adding(number)
@@ -178,7 +177,7 @@ class NumberToEdit {
 
     var length: Int {
         let validateNumber = value.components(separatedBy: .decimalDigits.inverted).joined()
-        return value.count
+        return validateNumber.count
     }
 
     func clear() {
