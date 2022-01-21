@@ -38,12 +38,27 @@ class SimpleCalcTests: XCTestCase {
         XCTAssertEqual(computation, NSDecimalNumber.zero)
     }
 
+    func testPointlength() throws {
+        let testButtons = ["1","123456",".1","1.1","123.456","0123456","0123.4567"]
+        let testResult = [1,6,2,2,6,6,7]
+        for (index,number) in testButtons.enumerated() {
+            model.editNumber.numeric = number
+            let result = model.editNumber.length
+            XCTAssertEqual(result, testResult[index])
+            model.allClear()
+        }
+    }
+
     func testPushNumberLimitButton() throws {
-        let testButtons = ["1","2","3","3","4","5","6","7","8","9","0","1","2","3","4"]
+        let testButtons = ["1","2","3","3","4",".","1","2","3","4","5","6","7","8","9","0"]
         var testResult = ""
+        var testCount = 0
         for number in testButtons {
             pressButton(button: number)
-            if testResult.count < 12 {
+            if testCount < 12 {
+                if number != "." {
+                    testCount += 1
+                }
                 testResult += number
             }
             let result = model.displayNumber
@@ -237,8 +252,12 @@ class SimpleCalcTests: XCTestCase {
                            ["1","+","2","/","3","="],
                            ["1","+","2","*","3","c","4","="],
                            ["1","+","2","*","3","a","4","+","5","="],
+                           ["1","+",".","2","="],
+                           ["1","+","±","2","="],
+                           ["1","+",".","±","2","="],
+
         ]
-        let testResult = ["9","5","2","9","1","12","9"]
+        let testResult = ["9","5","2","9","1","12","9","1.2","-1","0.8"]
         for (index, buttons) in testButtons.enumerated() {
             var calc = ""
             for operate in buttons {
@@ -256,9 +275,9 @@ class SimpleCalcTests: XCTestCase {
 
     func pressButton(button: String) {
         if button == "±" {
-            model.toggleNegative()
+            model.pushSignInversionButton()
         } else if button == "." {
-            model.addPoint()
+            model.pushPointButton()
         } else if button == "c" {
             model.clear()
         } else if button == "a" {

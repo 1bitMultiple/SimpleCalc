@@ -58,10 +58,10 @@ struct ContentView: View {
                 model.pushNumberButton(number)
 
             case .decimalPoint:
-                model.addPoint()
+                model.pushPointButton()
                 
             case .inversionＳign:
-                model.toggleNegative()
+                model.pushSignInversionButton()
 
             case .operation(let operationType):
                 model.pushOperateButton(operationType)

@@ -68,7 +68,6 @@ class CalclationModel: ObservableObject {
         }
         mode = .calculate
         let number = editNumber.decimal
-        print("debug: \(computation) \(operation.text) \(number)")
         switch operation {
             case .addition:
                 computation =  computation.adding(number)
@@ -98,12 +97,20 @@ class CalclationModel: ObservableObject {
         displayNumber = createRoundedNumber(decimalNumber: computation)
     }
 
-    func toggleNegative() {
+    func pushSignInversionButton() {
+        if case .calculate = mode {
+            editNumber.clear()
+            mode = .input
+        }
         editNumber.isNegative.toggle()
         displayNumber = editNumber.numeric
     }
 
-    func addPoint() {
+    func pushPointButton() {
+        if case .calculate = mode {
+            editNumber.clear()
+            mode = .input
+        }
         editNumber.appendPoint()
         displayNumber = editNumber.numeric
     }
@@ -170,7 +177,7 @@ class NumberToEdit {
 
     var length: Int {
         let validateNumber = value.components(separatedBy: .decimalDigits.inverted).joined()
-        return value.count
+        return validateNumber.count
     }
 
     func clear() {
